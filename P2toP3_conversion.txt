@@ -1,0 +1,10 @@
+Propose transCSSR conversion project from Python2 to v3.
+
+Following are brief notes to start the conversion of transCSSR from Python 2 to Python 3.
+
+o All print functions need to be convert from print ‘text’ to print(‘text”) using brackets.
+o All dictionary references using keys in loops, for example, 'deepcopy'.keys() will need to be converted being
+you will get 'can't pickle dict_keys objects' because Python 3 returns iterable view.
+
+    Example prposed work around.
+    https://stackoverflow.com/questions/49788935/python-iterating-variable-in-dictionary-typeerror-int-object-is-not-subsc/49819725#49819725
