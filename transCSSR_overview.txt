@@ -1,0 +1,53 @@
+transCSSR Overview
+
+The following are general overview notes.
+
+Within the state machine. You will set parameters for transCSSR configurations in ‘transCSSR.py’ and
+your project file, for example ‘walkthrough_transCSSR’:
+
+	* alpha is the significance level associated with CSSR's hypothesis tests. 
+      The number of degrees of freedom alpha = 0.001
+	* name of the data results files are "Xt_name"  & "Yt_name"
+	* verbose = False
+	* L maximum history length is the look back when inferring predictive distributions.
+		  L_max = 3
+	* ind_go_to = 20 (number of loops to go through each state)
+	* axs, ays = the input / output alphabets
+
+It is always good to use as much data as you can.  High-entropy processes are especially data-hungry.
+While it is generally good practice to hold back some data for testing or cross-validation, 
+recommend that this be minimized. 
+
+Two key parameters of the program are the maximum history length, L, and the significance level used in the test. 
+For any given process, there is a minimum history length M, such that the true states cannot be found if L < M.
+
+Number of states returned may be less than the correct number or higher.
+
+In general, one should use as small an L as possible, since under-sampling, even before the blow-up, 
+will reduce the accuracy of many probability estimates.  Blow-up, that is, reducing the probability of 
+mistakenly splitting a state --- but this carries the risk of failing to create valid new states.  
+
+Suggest exploring the data at low L and then increasing L.  If a stable architecture is found,
+it should be recorded at the lowest possible L.
+
+The various test transducers. Times Series (need to be same length)
+    Xt is the input
+    Yt is the output.
+
+------------------------ results -----------------------------
+
+The program will create the following files after running, where data file is the name of the parameter
+set for "Xt_name"  & "Yt_name"
+
+The results are returned in the file name ending: .dat_results
+
+1. transCSSR_results/xxxx.dat_results
+2. transCSSR_results/xxxx.dat
+
+The results contains the information on the inferred states and their properties.  
+For each state, it gives:
+    * State Number: The results come back with States, each state has a number, 0, 1, 2, 3, etc
+    * with position. (
+    * Distribution:
+    * Transitions:
+    * P(State):
